@@ -18,7 +18,6 @@ export class API {
 
       return res.data;
     } catch (e) {
-      console.log(e);
       throw e;
     }
   }
@@ -31,7 +30,6 @@ export class API {
 
       return res.data;
     } catch (e) {
-      console.error(e);
       throw e;
     }
   }
@@ -44,7 +42,6 @@ export class API {
 
       return res.data;
     } catch (e) {
-      console.error(e);
       throw e;
     }
   }
@@ -57,7 +54,6 @@ export class API {
 
       return res.data;
     } catch (e) {
-      console.error(e);
       throw e;
     }
   }

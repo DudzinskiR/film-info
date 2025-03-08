@@ -19,27 +19,21 @@ const getMovieData = async (id: string) => {
   try {
     const data = await TMDBApi.get<MovieDetails>(`/movie/${id}?language=pl`);
     return data;
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 };
 
 const getVideosData = async (id: string) => {
   try {
     const data = await TMDBApi.get<Videos>(`/movie/${id}/videos`);
     return data;
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 };
 
 const getCreditsData = async (id: string) => {
   try {
     const data = await TMDBApi.get<Credits>(`/movie/${id}/credits?language=pl`);
     return data;
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 };
 
 export const generateMetadata = async ({
