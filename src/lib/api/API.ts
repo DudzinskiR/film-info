@@ -6,7 +6,7 @@ export class API {
   private prepareHeaders(headers?: object) {
     return {
       ...headers,
-      Authorization: `Bearer ${process.env.NEXT_API_KEY}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
     };
   }
 
