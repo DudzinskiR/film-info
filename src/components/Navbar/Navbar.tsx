@@ -14,11 +14,14 @@ const Navbar = () => {
         isScrolled ? "h-[50px]" : "h-[70px]"
       )}
     >
-      <Link className="page-content text-2xl font-anton" href={"/"}>
+      <Link
+        className="page-content text-lg md:text-2xl font-anton min-w-24"
+        href={"/"}
+      >
         FILM INFO
       </Link>
-      <div className="flex flex-row gap-10 mr-16">
-        <Link href={"/movie"} className="hover:underline">
+      <div className="flex flex-row gap-10 mr-16 md:text-base text-xs">
+        <Link href={"/movie"} className="hover:underline text-center">
           EKSPLORUJ
         </Link>
         <Link href={"/search"} className="hover:underline">
