@@ -6,6 +6,7 @@ import { Raleway } from "next/font/google";
 import theme from "@/theme";
 import { ThemeProvider } from "@mui/material";
 import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer/Footer";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -28,7 +29,10 @@ export default function RootLayout({
       <html lang="pl" data-mui-color-scheme="dark">
         <body className={`${raleway.variable} bg-background-primary`}>
           <Navbar />
-          <div className="pt-[70px]">{children}</div>
+          <div className="flex flex-col min-h-screen font-raleway">
+            <div className="pt-[70px] flex-grow">{children}</div>
+            <Footer />
+          </div>
         </body>
       </html>
     </ThemeProvider>
