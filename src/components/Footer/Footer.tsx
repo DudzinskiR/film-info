@@ -4,7 +4,7 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <div className="bg-background-secondary flex justify-center">
-      <div className="flex flex-row items-center justify-center page-content py-5 gap-5 text-gray-300">
+      <div className="flex md:flex-row flex-col items-center justify-center page-content py-5 gap-5 text-gray-300">
         <p>This website is powered by the</p>
         <Link href={"https://www.themoviedb.org/"}>
           <Image
