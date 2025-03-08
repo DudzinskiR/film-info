@@ -36,14 +36,14 @@ const MovieInfoBox = ({ data, genres, showInfo, side }: MovieInfoBox) => {
         <div className="size-full absolute top-0 bg-linear-to-r from-slate-800 from-[80px] to-slate-800/70"></div>
       </div>
       <div className="relative text-white">
-        <h3 className="text-3xl line-clamp-2">{data.title}</h3>
+        <h3 className="text-xl line-clamp-2 font-anton">{data.title}</h3>
         {data.original_title !== data.title && (
           <p className="text-gray-300 italic line-clamp-2">
             {data.original_title}
           </p>
         )}
         <p className="my-3">{formatDate(data.release_date, "full")}</p>
-        {genres.slice(0, 5).map((item) => (
+        {genres.slice(0, 3).map((item) => (
           <p key={item.id} className="italic">
             {item.name}
           </p>

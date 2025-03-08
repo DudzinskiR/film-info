@@ -21,7 +21,7 @@ const MovieHeader = ({ data }: MovieHeaderProps) => {
             </div>
             <div className=" pl-5 text-white flex-col gap-3">
               <div className="flex flex-row items-center h-fit gap-3 text-4xl">
-                <h2 className="">{data.title}</h2>
+                <h2 className="font-anton">{data.title}</h2>
                 <span className="text-gray-200">
                   ({new Date(data.release_date).getFullYear()})
                 </span>

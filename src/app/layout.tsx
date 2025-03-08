@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Raleway } from "next/font/google";
+import { Raleway, Anton } from "next/font/google";
 
 import theme from "@/theme";
 import { ThemeProvider } from "@mui/material";
@@ -12,6 +12,12 @@ const raleway = Raleway({
   subsets: ["latin"],
   weight: ["100", "300", "400", "500", "600", "700"],
   variable: "--font-raleway",
+});
+
+const anton = Anton({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-anton",
 });
 
 export const metadata: Metadata = {
@@ -27,9 +33,11 @@ export default function RootLayout({
   return (
     <ThemeProvider theme={theme}>
       <html lang="pl" data-mui-color-scheme="dark">
-        <body className={`${raleway.variable} bg-background-primary`}>
+        <body
+          className={`${raleway.variable} ${anton.variable}  bg-background-primary`}
+        >
           <Navbar />
-          <div className="flex flex-col min-h-screen font-raleway">
+          <div className="flex flex-col min-h-screen font-raleway gap-16">
             <div className="pt-[70px] flex-grow">{children}</div>
             <Footer />
           </div>

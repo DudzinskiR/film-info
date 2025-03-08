@@ -10,12 +10,11 @@ const Navbar = () => {
   return (
     <div
       className={twJoin(
-        "bg-slate-900/90 w-full flex justify-center items-center fixed z-100 duration-300 px-10 backdrop-blur-sm",
         "bg-background-secondary/90 w-full flex justify-center items-center fixed z-100 duration-300 px-10 backdrop-blur-sm",
         isScrolled ? "h-[50px]" : "h-[70px]"
       )}
     >
-      <Link className="page-content text-2xl" href={"/"}>
+      <Link className="page-content text-2xl font-anton" href={"/"}>
         FILM INFO
       </Link>
       <div className="flex flex-row gap-10 mr-16">
