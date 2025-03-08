@@ -3,6 +3,11 @@ import { Genre } from "@/types/api/Genres";
 import { TrendingMovies } from "@/types/api/TrendingMovies";
 import { notFound } from "next/navigation";
 import HomeGenre from "./_components/HomeGenre/HomeGenre";
+import { Metadata } from "next";
+
+export const generateMetadata = (): Metadata => {
+  return { title: "FilmInfo" };
+};
 
 const getTrendingMovie = async () => {
   try {
