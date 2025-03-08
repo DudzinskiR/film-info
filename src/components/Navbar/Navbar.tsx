@@ -11,6 +11,7 @@ const Navbar = () => {
     <div
       className={twJoin(
         "bg-slate-900/90 w-full flex justify-center items-center fixed z-100 duration-300 px-10 backdrop-blur-sm",
+        "bg-background-secondary/90 w-full flex justify-center items-center fixed z-100 duration-300 px-10 backdrop-blur-sm",
         isScrolled ? "h-[50px]" : "h-[70px]"
       )}
     >

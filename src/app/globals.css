@@ -10,6 +10,8 @@
   --color-background-primary: #212121;
   --color-background-primary-rgb: 33, 33, 33;
 
+  --color-background-secondary: #131313;
+
   --movie-group-gradient: to right, rgb(var(--color-background-primary-rgb)) 0%,
     rgba(var(--color-background-primary-rgb), 0.7) 10%,
     rgba(var(--color-background-primary-rgb), 0.7) 90%,
