@@ -65,7 +65,7 @@ const HomeGenre = ({ genres, genreID }: HomeGenre) => {
       </div>
       <div className="page-content flex flex-col justify-center px-5">
         <Link href={`/movie?genre=${genreID}`}>
-          <h3 className="text-3xl font-semibold text-white text-center md:text-left md:pl-5 underline font-anton tracking-wider">
+          <h3 className="text-3xl font-semibold text-white hover:text-gray-300 duration-300 text-center md:text-left md:pl-5 underline font-anton tracking-wider">
             {genres.find((item) => item.id === genreID)?.name} {">"}
           </h3>
         </Link>
