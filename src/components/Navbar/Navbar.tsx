@@ -16,7 +16,7 @@ const Navbar = () => {
     >
       <div className="page-content flex justify-between items-center h-full">
         <Link
-          className="text-lg md:text-2xl font-anton min-w-24 hover:text-gray-300"
+          className="text-lg md:text-2xl font-anton min-w-24 hover:text-gray-300 duration-300"
           href={"/"}
         >
           FILM INFO
