@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import MovieSection from "./_components/MovieSection/MovieSection";
 import ReturnToHomePage from "@/components/ReturnToHomePage/ReturnToHomePage";
 import { Suspense } from "react";
+import { Metadata } from "next";
 
 const getMovieGenres = async () => {
   try {
@@ -14,6 +15,10 @@ const getMovieGenres = async () => {
   } catch (e) {
     console.log(e);
   }
+};
+
+export const generateMetadata = (): Metadata => {
+  return { title: "Odkrywaj | FilmInfo" };
 };
 
 const MoviePage = async () => {
