@@ -1,46 +1,23 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { MovieDetails } from "@/types/api/MovieDetails";
 import { TMDBApi } from "@/lib/api/TMDBApi";
-import MovieHeader from "./_components/MovieHeader";
-import MovieVideo from "./_components/MovieVideo";
-import { Videos } from "@/types/api/Videos";
-import { Credits } from "@/types/api/Credits";
-import MovieCredits from "./_components/MovieCredits";
-import MovieInfo from "./_components/MovieInfo";
+
 import ReturnToHomePage from "../../../components/ReturnToHomePage/ReturnToHomePage";
+import MovieCredits from "./_components/MovieCredits";
+import MovieHeader from "./_components/MovieHeader";
+import MovieInfo from "./_components/MovieInfo";
+import MovieVideo from "./_components/MovieVideo";
 
 interface MovieIDPageProps {
   params: Promise<{ id: string }>;
 }
 
-const getMovieData = async (id: string) => {
-  try {
-    const data = await TMDBApi.get<MovieDetails>(`/movie/${id}?language=pl`);
-    return data;
-  } catch (e) {}
-};
-
-const getVideosData = async (id: string) => {
-  try {
-    const data = await TMDBApi.get<Videos>(`/movie/${id}/videos`);
-    return data;
-  } catch (e) {}
-};
-
-const getCreditsData = async (id: string) => {
-  try {
-    const data = await TMDBApi.get<Credits>(`/movie/${id}/credits?language=pl`);
-    return data;
-  } catch (e) {}
-};
-
 export const generateMetadata = async ({
   params,
 }: MovieIDPageProps): Promise<Metadata> => {
   const { id } = await params;
-  const data = await getMovieData(id);
+  const data = await TMDBApi.getMovie(id);
 
   if (!data) {
     return { title: "FilmInfo" };
@@ -55,9 +32,9 @@ export const generateMetadata = async ({
 
 const MovieIDPage = async ({ params }: MovieIDPageProps) => {
   const { id } = await params;
-  const movieData = await getMovieData(id);
-  const videosData = await getVideosData(id);
-  const creditsData = await getCreditsData(id);
+  const movieData = await TMDBApi.getMovie(id);
+  const videosData = await TMDBApi.getVideos(id);
+  const creditsData = await TMDBApi.getCredits(id);
 
   const ytVideoData = videosData?.results.filter(
     (item) => item.site === "YouTube"

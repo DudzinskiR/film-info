@@ -1,16 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { twJoin } from "tailwind-merge";
 
+import MovieList from "@/components/MovieList/MovieList";
 import { useFadeInOnVisible } from "@/hook/useFadeInOnVisible/useFadeInOnVisible";
 import { TMDBApi } from "@/lib/api/TMDBApi";
-import { DiscoverMovie } from "@/types/api/DiscoverMovie";
-import { FetchStatus } from "@/types/FetchStatus";
-import { Genre } from "@/types/api/Genres";
-import MovieList from "@/components/MovieList/MovieList";
-import { twJoin } from "tailwind-merge";
 import { getBackdropPath } from "@/lib/imageSrc";
-import Link from "next/link";
+import { DiscoverMovie } from "@/types/api/DiscoverMovie";
+import { Genre } from "@/types/api/Genres";
+import { FetchStatus } from "@/types/FetchStatus";
 
 interface HomeGenre {
   genres: Genre[];
@@ -26,9 +26,7 @@ const HomeGenre = ({ genres, genreID }: HomeGenre) => {
     const fetchData = async () => {
       try {
         setStatus("FETCHING");
-        const data = await TMDBApi.get<DiscoverMovie>(
-          `/discover/movie?include_adult=false&include_video=false&language=pl&page=1&sort_by=popularity.desc&with_genres=${genreID}`
-        );
+        const data = await TMDBApi.getGenreMovies(genreID);
 
         setMovieDetails(data);
         setStatus("DONE");

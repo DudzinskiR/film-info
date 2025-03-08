@@ -3,11 +3,8 @@ import axios from "axios";
 export class API {
   constructor(private apiRoot: string) {}
 
-  private prepareHeaders(headers?: object) {
-    return {
-      ...headers,
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
-    };
+  protected prepareHeaders(headers?: object) {
+    return headers;
   }
 
   public async get<T>(url: string, headers?: object) {

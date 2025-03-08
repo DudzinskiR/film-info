@@ -1,14 +1,14 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { twJoin } from "tailwind-merge";
+
 import Movie from "@/components/Movie/Movie";
 import { TMDBApi } from "@/lib/api/TMDBApi";
 import { TrendingMovieDetails } from "@/types/api/TrendingMovieDetails";
-import { TrendingMovies } from "@/types/api/TrendingMovies";
 import { FetchStatus } from "@/types/FetchStatus";
 import { TextField } from "@mui/material";
-import { useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
-import { twJoin } from "tailwind-merge";
 
 const SearchPageContent = () => {
   const [searchName, setSearchName] = useState("");
@@ -35,11 +35,8 @@ const SearchPageContent = () => {
       setStatus("FETCHING");
       setMovies([]);
       try {
-        const result = await TMDBApi.get<TrendingMovies>(
-          `search/movie?query=${searchName}&include_adult=false&language=pl&page=1`
-        );
+        const result = await TMDBApi.searchMovies(searchName);
         setStatus("DONE");
-        console.log(result.results);
         if (result) setMovies(result.results);
       } catch (e) {
         setStatus("ERROR");

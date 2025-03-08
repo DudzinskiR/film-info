@@ -1,37 +1,17 @@
-import { TMDBApi } from "@/lib/api/TMDBApi";
-import { Genre } from "@/types/api/Genres";
-import { TrendingMovies } from "@/types/api/TrendingMovies";
-import { notFound } from "next/navigation";
-import HomeGenre from "./_components/HomeGenre/HomeGenre";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+import { TMDBApi } from "@/lib/api/TMDBApi";
+
+import HomeGenre from "./_components/HomeGenre/HomeGenre";
 
 export const generateMetadata = (): Metadata => {
   return { title: "FilmInfo" };
 };
 
-const getTrendingMovie = async () => {
-  try {
-    const data = await TMDBApi.get<TrendingMovies>(
-      `/trending/movie/day?language=pl`
-    );
-    return data;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-const getMovieGenres = async () => {
-  try {
-    const data = await TMDBApi.get<{ genres: Genre[] }>(
-      `/genre/movie/list?language=pl`
-    );
-    return data.genres;
-  } catch (e) {}
-};
-
 const HomePage = async () => {
-  const trendingMovies = await getTrendingMovie();
-  const genres = await getMovieGenres();
+  const trendingMovies = await TMDBApi.getTrendingMovies();
+  const genres = await TMDBApi.getMovieGenres();
 
   if (!trendingMovies || !genres) {
     notFound();

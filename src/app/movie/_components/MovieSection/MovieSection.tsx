@@ -1,37 +1,21 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { twJoin } from "tailwind-merge";
 
 import { TMDBApi } from "@/lib/api/TMDBApi";
 import { Genre } from "@/types/api/Genres";
 import { TrendingMovieDetails } from "@/types/api/TrendingMovieDetails";
-import { TrendingMovies } from "@/types/api/TrendingMovies";
 import { FetchStatus } from "@/types/FetchStatus";
 import { FilterData } from "@/types/FilterData";
 
 import FilteredMoviesList from "../FilteredMoviesList/FilteredMoviesList";
 import MovieFilter from "../MovieFilter/MovieFilter";
-import { useSearchParams } from "next/navigation";
 
 interface MovieSectionProps {
   genres: Genre[];
 }
-
-const getEndpoint = (data: FilterData) => {
-  const minRating = Math.min(...data.userScore);
-  const maxRating = Math.max(...data.userScore);
-  const sortBy = data.sortBy;
-  const genres = data.genres.join(",");
-
-  let endpoint =
-    "/discover/movie?include_adult=false&include_video=false&language=pl&page=1";
-  endpoint += `&vote_average.lte=${maxRating / 10}`;
-  endpoint += `&vote_average.gte=${minRating / 10}`;
-  endpoint += `&sort_by=${sortBy}`;
-  endpoint += `&with_genres=${genres}`;
-  return endpoint;
-};
 
 const MovieSection = ({ genres }: MovieSectionProps) => {
   const [filterData, setFilterData] = useState<FilterData>({
@@ -63,12 +47,10 @@ const MovieSection = ({ genres }: MovieSectionProps) => {
     const timer = setTimeout(async () => {
       try {
         setStatus("FETCHING");
-        const result = await TMDBApi.get<TrendingMovies>(
-          getEndpoint(filterData)
-        );
+        const result = await TMDBApi.getDiscoveredMovies(filterData);
 
         setStatus("DONE");
-        if (result.results) {
+        if (result?.results) {
           setMovies(result.results);
         }
       } catch (e) {
